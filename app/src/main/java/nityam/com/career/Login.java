@@ -3,6 +3,7 @@ package nityam.com.career;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -50,9 +51,9 @@ public class Login extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // put them on log
-        System.out.println("<NITYAM DEBUG>,,,OnActivityResult requestCode..." + requestCode);
-        System.out.println("<NITYAM DEBUG>,,,OnActivityResult resultCode..." + resultCode);
-        System.out.println("<NITYAM DEBUG>,,,OnActivityResult intentData..." + data);
+        Log.d("<onActResult-ReqCode> ",Integer.toString(requestCode));
+        Log.d("<onActResult-ResCode> ",Integer.toString(resultCode));
+        Log.d("<onActResult-IntData> ",data.toString());
 
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
@@ -70,23 +71,23 @@ public class Login extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // App code
-                System.out.println("*** NITYAM's DEBUGGING onSUCCESS...." + loginResult);
+                Log.d("<regCallback-Succ> ",loginResult.toString());
             }
 
             @Override
             public void onCancel() {
-                System.out.println("*** NITYAM's DEBUGGING onCANCEL....");
+                Log.d("<regCallback-Succ> "," Cancelled");
                 // App code
             }
 
             @Override
             public void onError(FacebookException exception) {
                 // App code
-                System.out.println("*** NITYAM's DEBUGGING onERROR...." );
+                Log.d("<regCallback-Succ> ","error");
             }
         });
 
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","email"));
 
 
     }
