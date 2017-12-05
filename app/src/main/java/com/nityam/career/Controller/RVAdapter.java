@@ -1,4 +1,4 @@
-package nityam.com.career.Controller;
+package com.nityam.career.Controller;
 
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import nityam.com.career.Model.Data;
-import nityam.com.career.R;
+import com.nityam.career.Model.Data;
+import com.nityam.career.R;
 
 
 /**

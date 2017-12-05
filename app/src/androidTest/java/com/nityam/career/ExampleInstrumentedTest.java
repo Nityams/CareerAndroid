@@ -1,4 +1,4 @@
-package nityam.com.career;
+package com.nityam.career;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("nityam.com.career", appContext.getPackageName());
+        assertEquals("com.nityam.career", appContext.getPackageName());
     }
 }

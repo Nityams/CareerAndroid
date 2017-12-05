@@ -1,4 +1,4 @@
-package nityam.com.career.View;
+package com.nityam.career.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,8 +26,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 
-import nityam.com.career.Model.PrefUtil;
-import nityam.com.career.R;
+import com.nityam.career.Model.PrefUtil;
+import com.nityam.career.R;
 
 
 public class Login extends AppCompatActivity {

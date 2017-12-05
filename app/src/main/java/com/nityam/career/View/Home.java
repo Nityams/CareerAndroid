@@ -1,6 +1,8 @@
-package nityam.com.career.View;
+package com.nityam.career.View;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,9 +16,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import nityam.com.career.Controller.DataUser;
-import nityam.com.career.Controller.RVAdapter;
-import nityam.com.career.R;
+import com.nityam.career.Controller.DataUser;
+import com.nityam.career.Controller.RVAdapter;
+import com.nityam.career.R;
 
 public class Home extends AppCompatActivity {
 
@@ -44,6 +46,12 @@ public class Home extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+        Configuration config = getResources().getConfiguration();
+        if (config.orientation == config.ORIENTATION_LANDSCAPE) {
+            goToMap(this);
+        }
 
 
 
@@ -83,6 +91,11 @@ public class Home extends AppCompatActivity {
         setCards();
 
 
+    }
+
+    private void goToMap(Home home) {
+        Intent intent = new Intent(this,MapsActivity.class);
+        startActivity(intent);
     }
 
     private void setCards() {

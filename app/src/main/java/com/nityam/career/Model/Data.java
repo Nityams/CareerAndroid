@@ -1,4 +1,4 @@
-package nityam.com.career.Model;
+package com.nityam.career.Model;
 
 import java.util.ArrayList;
 import java.util.List;

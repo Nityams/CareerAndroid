@@ -1,4 +1,4 @@
-package nityam.com.career;
+package com.nityam.career;
 
 import org.junit.Test;
 

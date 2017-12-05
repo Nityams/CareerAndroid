@@ -1,4 +1,4 @@
-package nityam.com.career.Model;
+package com.nityam.career.Model;
 
 /**
  * Created by nityamshrestha on 12/4/17.

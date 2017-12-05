@@ -1,8 +1,8 @@
-package nityam.com.career.Controller;
+package com.nityam.career.Controller;
 
 import java.util.List;
 
-import nityam.com.career.Model.Data;
+import com.nityam.career.Model.Data;
 
 /**
  * Created by nityamshrestha on 12/5/17.
