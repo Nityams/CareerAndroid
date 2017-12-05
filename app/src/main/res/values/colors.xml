@@ -7,4 +7,9 @@
     <color name ="appColor">#ffb74d</color>
     <color name ="appsecColor">#039be5</color>
     <color name ="appTerColor">#63ccff</color>
+
+    <color name="gradiant1">#A1C3B7</color>
+    <color name="gradiant2">#b1c1a6</color>
+    <color name="gradiant3">#c0bf94</color>
+    <color name="gradiant4">#d0bd82</color>
 </resources>

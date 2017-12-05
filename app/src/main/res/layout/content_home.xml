@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Applied History"
+        android:text="@string/history"
         android:background="@color/appTerColor"
         android:textColor="#FFFFFF"
         android:gravity="center"

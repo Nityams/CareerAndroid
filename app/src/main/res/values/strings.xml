@@ -4,5 +4,6 @@
     <string name="fb_login_protocol_scheme">fb171242626804068</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_maps">Map</string>
-
+    <string name="history">Applied History</string>
+    <string name="jobPage">New Application</string>
 </resources>
