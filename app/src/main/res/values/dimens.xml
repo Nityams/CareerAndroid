@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="textSize">16dp</dimen>
+    <dimen name="textPadding">10dp</dimen>
+</resources>

@@ -110,8 +110,6 @@ public class Login extends AppCompatActivity {
                 request.setParameters(parameters);
                 request.executeAsync();
 
-
-
             }
 
             @Override
@@ -127,8 +125,14 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        toMain();
 
 
+    }
+
+    private void toMain(){
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
     }
 
     private Bundle getFacebookData(JSONObject object) {
