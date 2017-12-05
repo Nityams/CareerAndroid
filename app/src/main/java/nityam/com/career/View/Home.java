@@ -1,9 +1,12 @@
 package nityam.com.career.View;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,12 +14,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import nityam.com.career.Controller.DataUser;
+import nityam.com.career.Controller.RVAdapter;
 import nityam.com.career.R;
 
 public class Home extends AppCompatActivity {
 
     private Spinner spinner;
     private static final String[]sortingMethods = {"Applied Date", "Status"};
+    private RecyclerView rv;
+    private static Context context;
+    RVAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,9 @@ public class Home extends AppCompatActivity {
             }
         });
 
+
+
+        context = getApplicationContext();
 
         spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -69,7 +80,23 @@ public class Home extends AppCompatActivity {
         });
 
 
+        setCards();
 
+
+    }
+
+    private void setCards() {
+        rv = (RecyclerView)findViewById(R.id.rv);
+
+        LinearLayoutManager llm = new LinearLayoutManager(context);
+        rv.setLayoutManager(llm);
+
+
+        DataUser du = new DataUser();
+        du.activateData();
+//        System.out.println(du.getDatas().size());
+        adapter= new RVAdapter(du.getDatas());
+        rv.setAdapter(adapter);
     }
 
 }
