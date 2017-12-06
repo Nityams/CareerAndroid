@@ -16,7 +16,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
            android:background="@color/appsecColor"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
         <!--android:background="?attr/colorPrimary"-->
 
     </android.support.design.widget.AppBarLayout>
@@ -29,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_margin="@dimen/fab_margin"
-        app:rippleColor="@color/com_facebook_blue"
+        app:rippleColor="@color/appTerColor"
         app:srcCompat="@drawable/ic_library_add_white_2x" />
 
 </android.support.design.widget.CoordinatorLayout>

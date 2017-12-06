@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nityam.career.JobPage"
+    tools:context="com.nityam.career.View.JobPage"
     android:orientation="vertical">
 
     <TextView
@@ -19,39 +19,40 @@
         />
 
     <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <android.support.v7.widget.CardView
+            android:background="@color/lightBlue"
+            >
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gradiant1"
-                app:cardBackgroundColor="@color/gradiant1">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+              <!--&gt;-->
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical">-->
                     <EditText
-                        android:layout_marginTop="@dimen/textSize"
                         android:layout_marginLeft="@dimen/textSize"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/newCompany"
-                        android:hint="Company"/>
+                        android:hint="Company">
+                        <requestFocus />
+                    </EditText>
+
                     <EditText
-                        android:layout_marginTop="@dimen/textSize"
                         android:layout_marginLeft="@dimen/textSize"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/newPosition"
                         android:hint="Position"/>
                     <EditText
-                        android:layout_marginTop="@dimen/textSize"
                         android:layout_marginLeft="@dimen/textSize"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -59,27 +60,28 @@
                         android:hint="City"/>
 
                     <DatePicker
+                        android:layout_marginLeft="@dimen/textSize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/newDate">
 
                     </DatePicker>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
 
-            <android.support.v7.widget.CardView
-                android:layout_marginTop="@dimen/button_padding"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/gradiant2"
-                app:cardBackgroundColor="@color/gradiant2">
-                <LinearLayout
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_marginTop="@dimen/button_padding"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+        <!--&gt;-->
+                <!--<LinearLayout-->
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/button_padding"
                         android:hint="Referral Name"
                         android:layout_marginLeft="@dimen/textSize"
                         android:id="@+id/newReferal"/>
@@ -92,23 +94,23 @@
                         android:layout_marginLeft="@dimen/textSize"
                         android:inputType="textEmailAddress"/>
 
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/button_padding"
-                android:background="@color/gradiant3"
-                app:cardBackgroundColor="@color/gradiant3">
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/button_padding"-->
+                <!--&gt;-->
 
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="vertical">
+              <!--<LinearLayout-->
+                  <!--android:layout_width="match_parent"-->
+                  <!--android:layout_height="wrap_content"-->
+                  <!--android:orientation="vertical">-->
                   <EditText
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/button_padding"
                       android:hint="Recruiter's Name"
                       android:layout_marginLeft="@dimen/textSize"
                       android:id="@+id/newRecruiter"/>
@@ -120,27 +122,27 @@
                       android:hint="Email"
                       android:layout_marginLeft="@dimen/textSize"
                       android:inputType="textEmailAddress"/>
-              </LinearLayout>
+              <!--</LinearLayout>-->
 
 
-            </android.support.v7.widget.CardView>
+            <!--</android.support.v7.widget.CardView>-->
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/button_padding"
-                android:layout_marginBottom="@dimen/button_padding"
-                android:background="@color/gradiant4"
-                app:cardBackgroundColor="@color/gradiant4">
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="@dimen/button_padding"-->
+                <!--android:layout_marginBottom="@dimen/button_padding"-->
+                <!--&gt;-->
 
                <android.support.constraint.ConstraintLayout
                    android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
+                   android:layout_height="wrap_content"
+                  android:layout_margin="@dimen/newTextSize">
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="Status: "
-                       android:textSize="@dimen/cardTextSize"
+                       android:textSize="@dimen/newTextSize"
                        app:layout_constraintLeft_toLeftOf="parent"/>
 
                    <Spinner
@@ -148,16 +150,16 @@
                        android:layout_height="wrap_content"
                        android:id="@+id/statusSpinner"
                        app:layout_constraintRight_toRightOf="parent">
-
                    </Spinner>
 
                </android.support.constraint.ConstraintLayout>
-            </android.support.v7.widget.CardView>
+            <!--</android.support.v7.widget.CardView>-->
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/button_padding"
+                android:layout_marginTop="@dimen/button_padding"
             >
                 <Button
                     android:layout_width="wrap_content"
@@ -165,7 +167,8 @@
                     android:id="@+id/newSubmit"
                     app:layout_constraintLeft_toLeftOf="parent"
                     android:layout_marginLeft="@dimen/textSize"
-                    android:text="submit"/>
+                    android:text="submit"
+                    android:onClick="submit"/>
                 <Button
                     android:layout_marginRight="@dimen/textSize"
                     android:layout_width="wrap_content"

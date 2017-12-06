@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +31,30 @@ public class Home extends AppCompatActivity {
     RVAdapter adapter;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.about:
+                Toast.makeText(this, "ABOUT", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.logout:
+                Toast.makeText(this, "HELP", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.profile:
+                Intent intent = new Intent(this,Profile.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -42,8 +68,10 @@ public class Home extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+                goToJobPage();
             }
         });
 
@@ -98,6 +126,11 @@ public class Home extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void goToJobPage(){
+        Intent intent = new Intent(this, JobPage.class);
+        startActivity(intent);
+    }
+
     private void setCards() {
         rv = (RecyclerView)findViewById(R.id.rv);
 
@@ -111,5 +144,6 @@ public class Home extends AppCompatActivity {
         adapter= new RVAdapter(du.getDatas());
         rv.setAdapter(adapter);
     }
+
 
 }
