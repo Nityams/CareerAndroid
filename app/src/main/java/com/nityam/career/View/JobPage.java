@@ -35,7 +35,7 @@ public class JobPage extends AppCompatActivity {
     Volley volley ;
     ArrayList<String> data;
 
-    private static final String[] STATUS = {"Applied", "Interview","Rejected","Offered","Will Apply"};
+    private static final String[] STATUS = {"Applied", "Interview","Offered","Rejected","Will Apply"};
 
     @Override
     protected void onResume() {
@@ -67,7 +67,6 @@ public class JobPage extends AppCompatActivity {
         //populate the spinner
         populateSpinner();
 
-
         company.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -79,7 +78,6 @@ public class JobPage extends AppCompatActivity {
                 }
             }
         });
-
 
     }
 

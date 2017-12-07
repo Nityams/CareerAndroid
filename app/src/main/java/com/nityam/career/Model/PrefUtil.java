@@ -23,17 +23,23 @@ public class PrefUtil {
         this.activity = activity;
     }
 
-    public void saveAccessToken(String token) {
+    public void saveAccessToken(String token, String userIDToken) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("fb_access_token", token);
+        editor.putString("user_id_token", userIDToken);
         editor.apply(); // This line is IMPORTANT !!!
     }
 
 
-    public static String getToken() {
+    public static String getLoginToken() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         return prefs.getString("fb_access_token", null);
+    }
+
+    public static String getUserToken() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        return prefs.getString("user_id_token", null);
     }
 
     public static void clearToken() {

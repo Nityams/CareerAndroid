@@ -85,17 +85,18 @@ public class Login extends AppCompatActivity {
         callbackManager = CallbackManager.Factory.create();
 
 //        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","email"));
-
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // App code
                 Log.d("<regCallback-Succ> ",loginResult.toString());
                 String accessToken = loginResult.getAccessToken().getToken();
+                String userToken = loginResult.getAccessToken().getUserId();
 
                 // save accessToken to SharedPreference
                 Log.d("<TOKEN>",accessToken.toString());
-                prefUtil.saveAccessToken(accessToken);
+                Log.d("<USERID>", userToken.toString());
+                prefUtil.saveAccessToken(accessToken,userToken);
 
                 GraphRequest request = GraphRequest.newMeRequest(
                         loginResult.getAccessToken(),
