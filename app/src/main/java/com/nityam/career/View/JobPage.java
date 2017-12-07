@@ -40,8 +40,10 @@ public class JobPage extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(!data.isEmpty())
-               data.clear();
+        if(data != null && !data.isEmpty())
+        {
+            data.clear();
+        }
     }
 
     @Override

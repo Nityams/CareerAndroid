@@ -18,8 +18,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.login.LoginManager;
 import com.nityam.career.Controller.DataUser;
 import com.nityam.career.Controller.RVAdapter;
+import com.nityam.career.Model.PrefUtil;
 import com.nityam.career.R;
 
 public class Home extends AppCompatActivity {
@@ -44,14 +48,36 @@ public class Home extends AppCompatActivity {
                 Toast.makeText(this, "ABOUT", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.logout:
-                Toast.makeText(this, "HELP", Toast.LENGTH_SHORT).show();
+                LoginManager.getInstance().logOut();
+                PrefUtil.clearToken();
+
+                deleteAccessToken();
+
+                Intent intent = new Intent(this, Login.class);
+                startActivity(intent);
                 break;
             case R.id.profile:
-                Intent intent = new Intent(this,Profile.class);
-                startActivity(intent);
+                Intent intente = new Intent(this,Profile.class);
+                startActivity(intente);
                 break;
         }
         return true;
+    }
+
+    private void deleteAccessToken() {
+        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(
+                    AccessToken oldAccessToken,
+                    AccessToken currentAccessToken) {
+
+                if (currentAccessToken == null) {
+                    //User logged out
+                    PrefUtil.clearToken();
+                    LoginManager.getInstance().logOut();
+                }
+            }
+        };
     }
 
     @Override
