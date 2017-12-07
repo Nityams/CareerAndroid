@@ -138,7 +138,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void toHomePage(){
-        Intent intent = new Intent(this, Home.class);
+        Intent intent = new Intent(this, DBLoadinScreen.class);
         startActivity(intent);
     }
 

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "853384954269",
+    "firebase_url": "https://career-94670.firebaseio.com",
+    "project_id": "career-94670",
+    "storage_bucket": "career-94670.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853384954269:android:a40820a9b048ce19",
+        "android_client_info": {
+          "package_name": "com.nityam.career"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853384954269-tifse63p0k0hhmckgu5f3neaecq6vbid.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nityam.career",
+            "certificate_hash": "8aa821ef9ef4d9ade452c319fe1a0de2675d2f4b"
+          }
+        },
+        {
+          "client_id": "853384954269-e60g5aedah9vhh1vst21tdbhfgtp3th0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBUfxOp62CTrqh1jFZbTFR-6X0n7m9u6c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853384954269-e60g5aedah9vhh1vst21tdbhfgtp3th0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

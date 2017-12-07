@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,6 +33,7 @@ public class Home extends AppCompatActivity {
     private RecyclerView rv;
     private static Context context;
     RVAdapter adapter;
+    Boolean firstStart = false;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -91,8 +91,6 @@ public class Home extends AppCompatActivity {
 
         getSupportActionBar().setTitle(R.string.app_name);
 
-        Log.d("<TOKEN>",PrefUtil.getLoginToken());
-        Log.d("<USerID",PrefUtil.getUserToken());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +112,8 @@ public class Home extends AppCompatActivity {
 
 
         context = getApplicationContext();
+
+        
 
         spinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,

@@ -23,7 +23,8 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>=
+            </intent-filter>
+            =
         </activity>
 
         <meta-data
@@ -46,12 +47,9 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".View.Home"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -67,11 +65,10 @@
         <activity
             android:name=".View.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".View.JobPage">
-
-        </activity>
+        <activity android:name=".View.JobPage"></activity>
         <activity android:name=".View.Profile" />
-        <activity android:name=".View.CompanyInfo"></activity>
+        <activity android:name=".View.CompanyInfo" />
+        <activity android:name=".View.DBLoadinScreen"></activity>
     </application>
 
 </manifest>
