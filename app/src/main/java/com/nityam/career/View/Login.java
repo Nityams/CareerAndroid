@@ -28,7 +28,6 @@ import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
 
 
 public class Login extends AppCompatActivity {
@@ -85,7 +84,7 @@ public class Login extends AppCompatActivity {
 
         callbackManager = CallbackManager.Factory.create();
 
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","email"));
+//        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","email"));
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
