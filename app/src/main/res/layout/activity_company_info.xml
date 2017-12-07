@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nityam.career.View.CompanyInfo"
+    android:layout_margin="@dimen/textSize"
+    android:orientation="vertical"
+    >
+    <TableLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:stretchColumns="1"
+        >
+        <TableRow>
+            <TextView
+                android:text="Company:"
+                android:padding="3dip" />
+            <TextView
+                android:hint="n/a"
+                android:gravity="right"
+                android:padding="3dip"
+                android:id="@+id/displayCompany"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Website:"
+                android:padding="3dip" />
+            <TextView
+                android:hint="n/a"
+                android:gravity="right"
+                android:padding="3dip"
+                android:id="@+id/displayWebsite"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Location:"
+                android:padding="3dip" />
+            <TextView
+                android:hint="n/a"
+                android:gravity="right"
+                android:padding="3dip"
+                android:id="@+id/displayLocation"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Industry:"
+                android:padding="3dip" />
+            <TextView
+                android:hint="n/a"
+                android:gravity="right"
+                android:padding="3dip"
+                android:id="@+id/displayIndustry"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Rating Desc:"
+                android:padding="3dip" />
+            <TextView
+                android:hint="n/a"
+                android:gravity="right"
+                android:padding="3dip"
+                android:id="@+id/displayRatingDesc"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Culture:"
+                android:padding="3dip" />
+            <TextView
+                android:hint="n/a"
+                android:gravity="right"
+                android:padding="3dip"
+                android:id="@+id/displayCulture"/>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Work/Life:"
+                android:padding="3dip" />
+            <TextView
+                android:hint="n/a"
+                android:gravity="right"
+                android:padding="3dip"
+                android:id="@+id/displayWorkLife"/>
+        </TableRow>
+
+        <!--<TableRow>-->
+        <!--<TextView-->
+        <!--android:text="More"-->
+        <!--android:padding="3dip" />-->
+        <!--<TextView-->
+        <!--android:hint="n/a"-->
+        <!--android:gravity="right"-->
+        <!--android:padding="3dip"-->
+        <!--android:id="@+id/displayLink"/>-->
+        <!--</TableRow>-->
+    </TableLayout>
+
+        <RatingBar
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/textSize"
+            android:layout_gravity="center"
+            android:id="@+id/rating"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Overall Rating"
+        android:textSize="@dimen/textSize"
+        android:gravity="center"
+        android:layout_gravity="center"
+        />
+
+</LinearLayout>
