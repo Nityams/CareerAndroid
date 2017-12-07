@@ -4,4 +4,6 @@
     <dimen name="textPadding">10dp</dimen>
     <dimen name="cardTextSize">14dp</dimen>
     <dimen name="newTextSize">20sp</dimen>
+    <dimen name="bigTextSize">24sp</dimen>
+    <dimen name = "WelcomeText">30sp</dimen>
 </resources>

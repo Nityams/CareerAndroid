@@ -45,6 +45,7 @@ public class DBLoadinScreen extends Activity {
 
                         Intent intent = new Intent(DBLoadinScreen.this, Home.class);
                         intent.putExtra("first_start", false);
+                        startActivity(intent);
                     }
                     else{
                         Log.d("<Nityam_Fbase>","User NOT Found");

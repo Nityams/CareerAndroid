@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -109,45 +110,69 @@ public class Home extends AppCompatActivity {
             goToMap(this);
         }
 
-
-
         context = getApplicationContext();
 
-        
+        firstStart = getIntent().getBooleanExtra("first_start",false);
 
-        spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item,sortingMethods);
+        if(!firstStart) {
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+            spinner = (Spinner) findViewById(R.id.spinner);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item, sortingMethods);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0:
-                        // Whatever you want to happen when the first item gets selected
-                        //date applied
-                        Toast.makeText(Home.this, "Sort by dates", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        // Status
-                        Toast.makeText(Home.this, "Sort by status", Toast.LENGTH_SHORT).show();
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
 
-                        break;
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    switch (position) {
+                        case 0:
+                            // Whatever you want to happen when the first item gets selected
+                            //date applied
+                            Toast.makeText(Home.this, "Sort by dates", Toast.LENGTH_SHORT).show();
+                            break;
+                        case 1:
+                            // Status
+                            Toast.makeText(Home.this, "Sort by status", Toast.LENGTH_SHORT).show();
+
+                            break;
+                    }
                 }
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
+                }
+            });
 
 
-        setCards();
+            setCards();
 
+        }else{
+            setWelcomeCards();
+
+            createNewUser();
+        }
+
+
+    }
+
+    private void createNewUser() {
+        git = FirebaseDatabase.getInstance().getReference("Recipe");
+
+    }
+
+    private void setWelcomeCards() {
+        TextView welcome1 = (TextView) findViewById(R.id.welcome1);
+        TextView welcome2 = (TextView) findViewById(R.id.welcome2);
+        TextView welcome3 = (TextView) findViewById(R.id.welcome3);
+        TextView welcome4 = (TextView) findViewById(R.id.welcome4);
+
+        welcome1.setText("Welcome, \n");
+        welcome2.setText("you must be new here");
+        welcome3.setText("Start by adding job applications \n \n");
+        welcome4.setText("Good Luck");
 
     }
 
