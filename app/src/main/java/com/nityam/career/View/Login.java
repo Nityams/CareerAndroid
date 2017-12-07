@@ -7,8 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -55,6 +56,10 @@ public class Login extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_login);
+
+        if(PrefUtil.isLoggedIn()){
+            toHomePage();
+        }
 
     //---------------------------------FACEBOOK----------------------------------------------------------
 
@@ -112,28 +117,27 @@ public class Login extends AppCompatActivity {
                 parameters.putString("fields", "id,first_name,last_name,email,gender");
                 request.setParameters(parameters);
                 request.executeAsync();
+                toHomePage();
 
             }
 
             @Override
-            public void onCancel() {
-                Log.d("<regCallback-Succ> "," Cancelled");
-                // App code
+            public void onCancel () {
+                Log.d("<NITYAM>", "Login attempt cancelled.");
             }
 
             @Override
-            public void onError(FacebookException exception) {
-                // App code
-                Log.d("<regCallback-Succ> ","error");
+            public void onError (FacebookException e){
+                e.printStackTrace();
+                Log.d("<NITYAM>", "Login attempt failed.");
+                deleteAccessToken();
             }
         });
-
-        toMain();
 
 
     }
 
-    private void toMain(){
+    private void toHomePage(){
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
@@ -176,21 +180,20 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public void signupOnClick(View view) {
-        Toast.makeText(this, " SIgn Up ", Toast.LENGTH_SHORT).show();
+
+    //debug
+    public void debugOnClick(View view) {
+        Intent intent = new Intent(this, Home.class);
+        startActivity(intent);
     }
 
-    public void signinOnClick(View view){
-        // disabled
-        Toast.makeText(this, " Sign In ", Toast.LENGTH_SHORT).show();
+    @Override
+    public void onBackPressed() {
+        //
 
     }
 
 
-
-    /**
-     * Might need to use this during log out
-     *
     private void deleteAccessToken() {
         AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
             @Override
@@ -206,5 +209,5 @@ public class Login extends AppCompatActivity {
             }
         };
     }
-    */
+
 }

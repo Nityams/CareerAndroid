@@ -31,12 +31,12 @@ public class PrefUtil {
     }
 
 
-    public String getToken() {
+    public static String getToken() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         return prefs.getString("fb_access_token", null);
     }
 
-    public void clearToken() {
+    public static void clearToken() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         SharedPreferences.Editor editor = prefs.edit();
         editor.clear();

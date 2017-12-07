@@ -28,9 +28,9 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="sign up"
+        android:text="DEBUG"
         android:id="@+id/signup"
-        android:onClick="signupOnClick"
+        android:onClick="debugOnClick"
         app:layout_constraintBottom_toTopOf="@id/login_button"
         />
 

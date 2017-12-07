@@ -1,5 +1,6 @@
 package com.nityam.career.View;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -8,6 +9,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.login.LoginManager;
 import com.nityam.career.Model.PrefUtil;
 import com.nityam.career.R;
 
@@ -35,6 +39,29 @@ public class Profile extends AppCompatActivity {
     }
 
     public void logout(View view) {
+        LoginManager.getInstance().logOut();
+        PrefUtil.clearToken();
 
+        deleteAccessToken();
+
+        Intent intent = new Intent(Profile.this, Login.class);
+        startActivity(intent);
+
+    }
+
+    private void deleteAccessToken() {
+        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(
+                    AccessToken oldAccessToken,
+                    AccessToken currentAccessToken) {
+
+                if (currentAccessToken == null) {
+                    //User logged out
+                    PrefUtil.clearToken();
+                    LoginManager.getInstance().logOut();
+                }
+            }
+        };
     }
 }
