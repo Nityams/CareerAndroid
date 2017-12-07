@@ -16,7 +16,7 @@ import android.util.Log;
 
 public class PrefUtil {
 
-    private Activity activity;
+    private static Activity activity;
 
     // Constructor
     public PrefUtil(Activity activity) {
@@ -51,6 +51,7 @@ public class PrefUtil {
         editor.putString("fb_email", email);
         editor.putString("fb_gender", gender);
         editor.putString("fb_profileURL", profileURL);
+        editor.putBoolean("isLoggedIn", true);
         editor.apply(); // This line is IMPORTANT !!!
         Log.d("MyApp", "Shared Name : "+first_name+"\nLast Name : "+last_name+"\nEmail : "+email+"\nGender : "+gender+"\nProfile Pic : "+profileURL);
     }
@@ -60,5 +61,18 @@ public class PrefUtil {
         Log.d("MyApp", "Name : "+prefs.getString("fb_name",null)+"\nEmail : "+prefs.getString("fb_email",null));
     }
 
+    public static String[] getFBUserInfoAll(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        String[] user = {
+                        prefs.getString("fb_first_name",null),
+                        prefs.getString("fb_last_name",null),
+                        prefs.getString("fb_email",null)
+                        };
+        return user;
+    }
+    public static boolean isLoggedIn(){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
+        return prefs.getBoolean("isLoggedIn",false);
+    }
 
 }

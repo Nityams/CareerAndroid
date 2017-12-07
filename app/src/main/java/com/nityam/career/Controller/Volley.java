@@ -37,7 +37,7 @@ public class Volley {
         Log.d("<V_COMPANY>",company);
         String url = Link + company;
 
-        String  REQUEST_TAG = "com.androidtutorialpoint.volleyJsonObjectRequest";
+        String  REQUEST_TAG = "com.nityam.carrer";
 
 
         JsonObjectRequest jsonObjectReq = new JsonObjectRequest(url, null,

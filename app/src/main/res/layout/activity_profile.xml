@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Email"
-                android:textSize="@dimen/newTextSize"
+                android:textSize="12sp"
                 android:id="@+id/userEmail"
                 />
             

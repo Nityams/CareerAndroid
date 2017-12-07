@@ -37,6 +37,12 @@ public class JobPage extends AppCompatActivity {
 
     private static final String[] STATUS = {"Applied", "Interview","Rejected","Offered","Will Apply"};
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!data.isEmpty())
+               data.clear();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.nityam.career.View;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,15 +20,14 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.share.widget.ShareDialog;
+import com.nityam.career.Model.PrefUtil;
+import com.nityam.career.R;
 
 import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
-
-import com.nityam.career.Model.PrefUtil;
-import com.nityam.career.R;
 
 
 public class Login extends AppCompatActivity {
@@ -37,6 +37,9 @@ public class Login extends AppCompatActivity {
     ShareDialog shareDialog;
     private PrefUtil prefUtil;
 
+    public Activity getActivity(){
+        return this.getActivity();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
