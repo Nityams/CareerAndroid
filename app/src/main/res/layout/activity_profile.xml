@@ -22,9 +22,18 @@
            android:layout_width="@dimen/photoSize"
            android:layout_height="@dimen/photoSize"
            android:id="@+id/image"
-           android:layout_gravity="center"/>
+           android:layout_gravity="center"
+           android:onClick="changePic"/>
 
     </android.support.v7.widget.CardView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Click Picture"
+        android:id="@+id/clickPicture"
+        android:onClick="clickPicture"/>
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"

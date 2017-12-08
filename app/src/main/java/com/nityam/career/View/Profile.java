@@ -1,10 +1,14 @@
 package com.nityam.career.View;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +21,8 @@ import com.nityam.career.Model.PrefUtil;
 import com.nityam.career.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+
 public class Profile extends AppCompatActivity {
 
     TextView username;
@@ -24,7 +30,9 @@ public class Profile extends AppCompatActivity {
     TextView number;
     ImageView img;
     String url;
+    Button camera;
 
+    static final int CAM_REQUEST = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +42,7 @@ public class Profile extends AppCompatActivity {
         email = (TextView) findViewById(R.id.userEmail);
         number = (TextView) findViewById(R.id.userNumberCompaniesApplied);
         img = (ImageView) findViewById(R.id.image);
-
+        camera = (Button) findViewById(R.id.clickPicture);
 
 
 
@@ -97,4 +105,35 @@ public class Profile extends AppCompatActivity {
         };
     }
 
+    public void changePic(View view) {
+
+
+    }
+
+    public void clickPicture(View view) {
+
+        Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File file = getFile();
+        camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+        startActivityForResult(camera_intent, CAM_REQUEST);
+
+
+    }
+
+    private File getFile(){
+        File folder = new File("sdcard/camera_app");
+        if(!folder.exists()){
+            folder.mkdir();
+        }
+        File image_file = new File(folder, "cam_image.jpg");
+        return image_file;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String path = "sdcard/camera_app/cam_image.jpg";
+        img.setImageDrawable(Drawable.createFromPath(path));
+
+//        super.onActivityResult(requestCode, resultCode, data);
+    }
 }
