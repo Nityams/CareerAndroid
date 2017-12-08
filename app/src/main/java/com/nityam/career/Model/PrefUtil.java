@@ -62,6 +62,7 @@ public class PrefUtil {
         Log.d("MyApp", "Shared Name : "+first_name+"\nLast Name : "+last_name+"\nEmail : "+email+"\nGender : "+gender+"\nProfile Pic : "+profileURL);
     }
 
+
     public void getFacebookUserInfo(){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         Log.d("MyApp", "Name : "+prefs.getString("fb_name",null)+"\nEmail : "+prefs.getString("fb_email",null));
@@ -72,7 +73,8 @@ public class PrefUtil {
         String[] user = {
                         prefs.getString("fb_first_name",null),
                         prefs.getString("fb_last_name",null),
-                        prefs.getString("fb_email",null)
+                        prefs.getString("fb_email",null),
+                        prefs.getString("fb_profileURL", null)
                         };
         return user;
     }
@@ -80,5 +82,6 @@ public class PrefUtil {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(activity);
         return prefs.getBoolean("isLoggedIn",false);
     }
+
 
 }

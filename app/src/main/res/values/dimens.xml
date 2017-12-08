@@ -7,5 +7,5 @@
     <dimen name="bigTextSize">24sp</dimen>
     <dimen name = "WelcomeText">30sp</dimen>
 
-    <dimen name="photoSize">100dp</dimen>
+    <dimen name="photoSize">250dp</dimen>
 </resources>
