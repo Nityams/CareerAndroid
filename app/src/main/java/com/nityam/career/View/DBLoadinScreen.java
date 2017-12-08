@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nityam.career.Controller.JobController;
+import com.nityam.career.Model.FireSave;
 import com.nityam.career.Model.JobPost;
 import com.nityam.career.Model.PrefUtil;
 import com.nityam.career.R;
@@ -101,12 +102,12 @@ public class DBLoadinScreen extends Activity {
                 for(DataSnapshot heroSnapshot: dataSnapshot.getChildren()){
 
                     JobPost value = heroSnapshot.getValue(JobPost.class);
-                    Log.d("<StrinFBase>",value.getId());
-                    Log.d("<StrinFBase>",value.getCompany());
-                    Log.d("<StrinFBase>",value.getCity());
 
                    JobController.addJobs(new JobPost(value.getId(),value.getCompany(),value.getPosition(), value.getCity(),value.getDate(), value.getRefName(), value.getRefEmail(), value.getRecName(), value.getRecEmail(), value.getStatus()));
-                    Log.d("<from-db>", Integer.toString(JobController.getJobSize()));
+
+                    FireSave.setCities(value.getCity());
+
+                   Log.d("<from-db>", Integer.toString(JobController.getJobSize()));
                 }
             }
 

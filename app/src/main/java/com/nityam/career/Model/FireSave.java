@@ -9,16 +9,7 @@ import java.util.ArrayList;
 // Save only important
 public class FireSave {
 
-    static private int numberOfJobsApplied = 0;
     static private ArrayList<String> cities = new ArrayList<>();
-
-    public static int getNumberOfJobsApplied(){
-        return numberOfJobsApplied;
-    }
-
-    public  void setNumberOfJobsApplied(int numberOfJobsApplied){
-        this.numberOfJobsApplied = numberOfJobsApplied;
-     }
 
      public static ArrayList<String> getCities(){
         return cities;
@@ -28,8 +19,8 @@ public class FireSave {
          return cities.size();
      }
 
-     public void setCities(ArrayList<String> cities){
-         this.cities = cities;
+     public static void setCities(String city){
+         cities.add(city);
      }
 
 }

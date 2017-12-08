@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,6 +13,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import com.nityam.career.Model.FireSave;
 import com.nityam.career.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -32,6 +34,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (config.orientation == config.ORIENTATION_PORTRAIT) {
             goToMain(this);
         }
+
+        Toast.makeText(this, Integer.toString(FireSave.getNumberCities()), Toast.LENGTH_SHORT).show();
 
     }
 
