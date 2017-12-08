@@ -1,16 +1,17 @@
 package com.nityam.career.Model;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * Created by nityamshrestha on 12/7/17.
  */
 
-public class JobPost {
+public class JobPost implements Serializable {
 
+    String id = null;
     String company = null;
     String position = null;
-    Date date= null;
+    String date= null;
     String refName= null;
     String refEmail= null;
     String recName= null;
@@ -18,12 +19,29 @@ public class JobPost {
     String status= null;
     String city= null;
 
-    public JobPost(String company, String position, Date date, String status, String city) {
+    public JobPost(){
+
+    }
+
+    public JobPost(String id, String company, String position,  String city, String date, String refName, String refEmail, String recName, String recEmail, String status) {
+        this.id = id;
         this.company = company;
         this.position = position;
         this.date = date;
+        this.refName = refName;
+        this.refEmail = refEmail;
+        this.recName = recName;
+        this.recEmail = recEmail;
         this.status = status;
         this.city = city;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCompany() {
@@ -42,11 +60,11 @@ public class JobPost {
         this.position = position;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

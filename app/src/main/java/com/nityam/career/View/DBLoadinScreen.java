@@ -10,6 +10,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.nityam.career.Controller.JobController;
+import com.nityam.career.Model.JobPost;
 import com.nityam.career.Model.PrefUtil;
 import com.nityam.career.R;
 
@@ -17,6 +19,8 @@ public class DBLoadinScreen extends Activity {
 
     String user;
     static DatabaseReference rootRef ;
+    static DatabaseReference userRef;
+    JobController jobController;
 
 
     @Override
@@ -25,6 +29,22 @@ public class DBLoadinScreen extends Activity {
         setContentView(R.layout.activity_dbloadin_screen);
 
         user = PrefUtil.getUserToken();
+
+        // posting to firebase database
+        JobPost jp = (JobPost) getIntent().getSerializableExtra("job");
+        if(jp != null){
+            Log.d("<Nityam>","job found");
+
+            rootRef = FirebaseDatabase.getInstance().getReference();
+            rootRef.child(user).child(jp.getId()).setValue(jp);
+
+
+            getData();
+
+        }else{
+            Log.d("<NITYAM>", "job not found");
+            //push with user id
+        }
 
         getData();
     }
@@ -42,6 +62,9 @@ public class DBLoadinScreen extends Activity {
                     if (snapshot.hasChild(user)) {
                         // run some code
                         Log.d("<Nityam_Fbase>","User Found");
+                        // add to the phone
+
+                        populateFromDatabase();
 
                         Intent intent = new Intent(DBLoadinScreen.this, Home.class);
                         intent.putExtra("first_start", false);
@@ -63,5 +86,39 @@ public class DBLoadinScreen extends Activity {
                 }
             });
         }
+    }
+
+    private void populateFromDatabase() {
+        jobController = JobController.getInstance();
+        userRef = FirebaseDatabase.getInstance().getReference(user);
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot heroSnapshot: dataSnapshot.getChildren()){
+
+                    JobPost value = heroSnapshot.getValue(JobPost.class);
+                    Log.d("<StrinFBase>",value.getId());
+                    Log.d("<StrinFBase>",value.getCompany());
+                    Log.d("<StrinFBase>",value.getCity());
+
+                    jobController.addJobs(value);
+//                    Log.d("<from-db>", heroSnapshot.getKey(user).toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("<NITYAM>", "Failed to read value.", databaseError.toException());
+
+            }
+        });
+
+
+//        jobController.addJobs(new JobPost());
+
+
+
+
     }
 }

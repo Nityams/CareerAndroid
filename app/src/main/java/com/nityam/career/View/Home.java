@@ -35,6 +35,7 @@ public class Home extends AppCompatActivity {
     private static Context context;
     RVAdapter adapter;
     Boolean firstStart = false;
+    String user;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,6 +112,7 @@ public class Home extends AppCompatActivity {
         }
 
         context = getApplicationContext();
+        user = PrefUtil.getUserToken();
 
         firstStart = getIntent().getBooleanExtra("first_start",false);
 
@@ -152,18 +154,26 @@ public class Home extends AppCompatActivity {
         }else{
             setWelcomeCards();
 
-            createNewUser();
+//            createNewUser();
         }
 
 
     }
 
+    /*
+
     private void createNewUser() {
-        git = FirebaseDatabase.getInstance().getReference("Recipe");
+        Log.d("<NitDatabase>", "creating new use in firebase");
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        rootRef.child(user).setValue("apple");
+//        DatabaseReference job = FirebaseDatabase.getInstance().getReference(user);
+
+//        job.keepSynced(true);
 
     }
-
+*/
     private void setWelcomeCards() {
+        // make it fragment
         TextView welcome1 = (TextView) findViewById(R.id.welcome1);
         TextView welcome2 = (TextView) findViewById(R.id.welcome2);
         TextView welcome3 = (TextView) findViewById(R.id.welcome3);

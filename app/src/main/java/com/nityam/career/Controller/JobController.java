@@ -9,6 +9,7 @@ import java.util.ArrayList;
  */
 
 //Singleton class
+    // used after getting info from database
 
 public class JobController {
 
@@ -25,6 +26,10 @@ public class JobController {
             return new JobController();
         }else
             return jobController;
+    }
+
+    public ArrayList<JobPost> getJobs(){
+        return jobs;
     }
 
     public void clear(){

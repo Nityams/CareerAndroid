@@ -13,27 +13,37 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.nityam.career.Controller.Volley;
+import com.nityam.career.Model.JobPost;
 import com.nityam.career.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class JobPage extends AppCompatActivity {
 
+    String id;
     EditText company ;
     EditText position;
     EditText city;
-    Date date;
+//    EditText dateTxt;
     EditText refName;
     EditText refEmail;
     EditText recName;
     EditText recEmail;
+    String spinnerString = "will apply";
     Spinner statusSpinner;
+//    Calendar myCalendar;
+
+    Boolean update = false;
+
 
     ProgressDialog progressDialog;
     Volley volley ;
     ArrayList<String> data;
+
+    JobPost jobPost;
 
     private static final String[] STATUS = {"Applied", "Interview","Offered","Rejected","Will Apply"};
 
@@ -61,10 +71,8 @@ public class JobPage extends AppCompatActivity {
         recName = (EditText) findViewById(R.id.newRecruiter);
         recEmail = (EditText) findViewById(R.id.newRecEmail);
         statusSpinner = (Spinner) findViewById(R.id.statusSpinner);
+//        dateTxt = (EditText) findViewById(R.id.newDate);
 
-//        data = (Date) findViewById(R.id.newDate);
-    // get date
-        //populate the spinner
         populateSpinner();
 
         company.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -78,7 +86,6 @@ public class JobPage extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private void populateSpinner() {
@@ -97,19 +104,24 @@ public class JobPage extends AppCompatActivity {
                         // Whatever you want to happen when the first item gets selected
                         //date applied
                         Toast.makeText(JobPage.this, "Applied", Toast.LENGTH_SHORT).show();
+                        spinnerString = "applied";
                         break;
                     case 1:
                         // Status
                         Toast.makeText(JobPage.this, "Interview", Toast.LENGTH_SHORT).show();
+                        spinnerString = "interview";
                         break;
                     case 2:
-                        Toast.makeText(JobPage.this, "Rejected", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JobPage.this, "Offered", Toast.LENGTH_SHORT).show();
+                        spinnerString = "offered";
                         break;
                     case 3:
-                        Toast.makeText(JobPage.this, "Offered", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JobPage.this, "Rejected", Toast.LENGTH_SHORT).show();
+                        spinnerString = "rejected";
                         break;
                     default:
                         Toast.makeText(JobPage.this, "Will apply", Toast.LENGTH_SHORT).show();
+                        spinnerString= "will apply";
                         break;
                 }
             }
@@ -123,6 +135,35 @@ public class JobPage extends AppCompatActivity {
 
 
     public void submit(View view) {
+
+        if(!company.getText().toString().isEmpty() ||
+                !position.getText().toString().isEmpty() ||
+                !city.getText().toString().isEmpty()
+//                || !date.toString().isEmpty()
+                )
+        {
+            if(!update){
+                id = Long.toString(Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis());
+            }
+            jobPost = new JobPost(  id,
+                                    company.getText().toString(),
+                                    position.getText().toString(),
+                                    city.getText().toString(),
+                                    "",
+                                    refName.getText().toString(),
+                                    refEmail.getText().toString(),
+                                    recName.getText().toString(),
+                                    recEmail.getText().toString(),
+                                    spinnerString
+            );
+            Intent intent = new Intent(this, DBLoadinScreen.class);
+            intent.putExtra("job",jobPost);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(this, "Incomplete form", Toast.LENGTH_SHORT).show();
+        }
+
 
 //        progressDialog.setMessage("Loading...");
 //        progressDialog.show();
