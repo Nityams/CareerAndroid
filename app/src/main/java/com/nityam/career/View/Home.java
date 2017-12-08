@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,7 +23,8 @@ import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.login.LoginManager;
-import com.nityam.career.Controller.DataUser;
+import com.nityam.career.Controller.DummyAdapter;
+import com.nityam.career.Controller.JobController;
 import com.nityam.career.Controller.RVAdapter;
 import com.nityam.career.Model.PrefUtil;
 import com.nityam.career.R;
@@ -34,6 +36,9 @@ public class Home extends AppCompatActivity {
     private RecyclerView rv;
     private static Context context;
     RVAdapter adapter;
+
+    DummyAdapter dummyAdapter;
+
     Boolean firstStart = false;
     String user;
 
@@ -116,7 +121,9 @@ public class Home extends AppCompatActivity {
 
         firstStart = getIntent().getBooleanExtra("first_start",false);
 
-        if(!firstStart) {
+        Toast.makeText(this, Boolean.toString(firstStart), Toast.LENGTH_SHORT).show();
+
+//        if(!firstStart) {
 
             spinner = (Spinner) findViewById(R.id.spinner);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -151,11 +158,11 @@ public class Home extends AppCompatActivity {
 
             setCards();
 
-        }else{
-            setWelcomeCards();
+//        }else{
+//            setWelcomeCards();
 
 //            createNewUser();
-        }
+//        }
 
 
     }
@@ -201,13 +208,19 @@ public class Home extends AppCompatActivity {
 
         LinearLayoutManager llm = new LinearLayoutManager(context);
         rv.setLayoutManager(llm);
+//
+//        DataUser du = new DataUser();
+//        du.activateData();
+//        dummyAdapter = new DummyAdapter(du.getDatas());
+//        rv.setAdapter(dummyAdapter);
+
+//        JobController jc = JobController.getInstance();
+        Log.d("<CARDS>", Integer.toString(JobController.getJobSize()));
+
+        adapter= new RVAdapter(JobController.getJobs());
+         rv.setAdapter(adapter);
 
 
-        DataUser du = new DataUser();
-        du.activateData();
-//        System.out.println(du.getDatas().size());
-        adapter= new RVAdapter(du.getDatas());
-        rv.setAdapter(adapter);
     }
 
 

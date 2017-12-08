@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class JobController {
 
-    ArrayList<JobPost> jobs;
+    static ArrayList<JobPost> jobs = new ArrayList<>();
 
     static JobController jobController;
 
@@ -28,19 +28,19 @@ public class JobController {
             return jobController;
     }
 
-    public ArrayList<JobPost> getJobs(){
+    public static ArrayList<JobPost> getJobs(){
         return jobs;
     }
 
-    public void clear(){
+    public static void clear(){
         jobs.clear();
     }
 
-    public void addJobs(JobPost jp){
+    public static void addJobs(JobPost jp){
         jobs.add(jp);
     }
 
-    public int getJobSize(){
+    public static int getJobSize(){
         return jobs.size();
     }
 

@@ -9,18 +9,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.nityam.career.Model.JobPost;
+import com.nityam.career.Model.Data;
 import com.nityam.career.R;
 
 import java.util.List;
 
-
 /**
- * Created by nityamshrestha on 12/4/17.
+ * Created by nityamshrestha on 12/7/17.
  */
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataViewHolder>{
-    List<JobPost> datas;
+public class DummyAdapter extends RecyclerView.Adapter<DummyAdapter.DataViewHolder>{
+    List<Data> datas;
 
     public static class DataViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -41,9 +40,9 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataViewHolder>{
         }
     }
 
-   public RVAdapter(List<JobPost> datas){
+    public DummyAdapter(List<Data> datas){
 
-       this.datas = datas;
+        this.datas = datas;
     }
 
     @Override
@@ -60,24 +59,21 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataViewHolder>{
 
     @Override
     public void onBindViewHolder(DataViewHolder DataViewHolder, int i) {
-        DataViewHolder.company.setText(datas.get(i).getCompany());
-        DataViewHolder.position.setText(datas.get(i).getCompany());
-        DataViewHolder.date.setText(datas.get(i).getDate());
-        DataViewHolder.location.setText(datas.get(i).getCity());
-        String st = datas.get(i).getStatus();
-
+        DataViewHolder.company.setText(datas.get(i).company);
+        DataViewHolder.position.setText(datas.get(i).position);
+        DataViewHolder.date.setText(datas.get(i).date);
+        DataViewHolder.location.setText(datas.get(i).location);
+        String st = datas.get(i).status;
 //        DataViewHolder.status.setBackgroundColor(Color.BLUE);
-
-
         switch(st){
             case "interview" : DataViewHolder.status.setBackgroundColor(Color.YELLOW);
-                                break;
+                break;
             case "accepted" :   DataViewHolder.status.setBackgroundColor(Color.GREEN);
-                                break;
+                break;
             case "rejected" :   DataViewHolder.status.setBackgroundColor(Color.RED);
-                                break;
+                break;
             default:
-                                DataViewHolder.status.setBackgroundColor(Color.BLUE);
+                DataViewHolder.status.setBackgroundColor(Color.BLUE);
                 break;
         }
     }
