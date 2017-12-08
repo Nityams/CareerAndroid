@@ -1,6 +1,8 @@
 package com.nityam.career.View;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ public class Profile extends AppCompatActivity {
     Button camera;
 
     static final int CAM_REQUEST = 1;
+    private static final int SELECT_PICTURE = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +109,10 @@ public class Profile extends AppCompatActivity {
     }
 
     public void changePic(View view) {
-
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURE);
 
     }
 
@@ -117,7 +123,18 @@ public class Profile extends AppCompatActivity {
         camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
         startActivityForResult(camera_intent, CAM_REQUEST);
 
+    }
 
+    public String getPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
     }
 
     private File getFile(){
@@ -129,11 +146,39 @@ public class Profile extends AppCompatActivity {
         return image_file;
     }
 
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        String path = "sdcard/camera_app/cam_image.jpg";
-        img.setImageDrawable(Drawable.createFromPath(path));
-
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_PICTURE) {
+                // Get the url from data
+                Uri selectedImageUri = data.getData();
+                if (null != selectedImageUri) {
+                    // Get the path from the Uri
+                    String path = getPathFromURI(selectedImageUri);
+                    Log.i("<NITYAMImg>", "Image Path : " + path);
+                    // Set the image in ImageView
+                    img.setImageURI(selectedImageUri);
+                }
+            }
+        }
+        else {
+            String path = "sdcard/camera_app/cam_image.jpg";
+            img.setImageDrawable(Drawable.createFromPath(path));
+        }
 //        super.onActivityResult(requestCode, resultCode, data);
+
+        rotateImage();
+    }
+
+    private void rotateImage(){
+
+        Matrix matrix = new Matrix();
+
+        img.setScaleType(ImageView.ScaleType.MATRIX);   //required
+        matrix.postRotate((float) -90f, 180, 300);
+        img.setImageMatrix(matrix);
     }
 }
