@@ -44,4 +44,8 @@ public class JobController {
         return jobs.size();
     }
 
+    public static JobPost removeAtIndex(int i){
+        return jobs.remove(i);
+    }
+
 }

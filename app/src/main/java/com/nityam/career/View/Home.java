@@ -3,12 +3,14 @@ package com.nityam.career.View;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,9 +25,12 @@ import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.login.LoginManager;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.nityam.career.Controller.DummyAdapter;
 import com.nityam.career.Controller.JobController;
 import com.nityam.career.Controller.RVAdapter;
+import com.nityam.career.Model.JobPost;
 import com.nityam.career.Model.PrefUtil;
 import com.nityam.career.R;
 
@@ -167,18 +172,6 @@ public class Home extends AppCompatActivity {
 
     }
 
-    /*
-
-    private void createNewUser() {
-        Log.d("<NitDatabase>", "creating new use in firebase");
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        rootRef.child(user).setValue("apple");
-//        DatabaseReference job = FirebaseDatabase.getInstance().getReference(user);
-
-//        job.keepSynced(true);
-
-    }
-*/
     private void setWelcomeCards() {
         // make it fragment
         TextView welcome1 = (TextView) findViewById(R.id.welcome1);
@@ -206,8 +199,45 @@ public class Home extends AppCompatActivity {
     private void setCards() {
         rv = (RecyclerView)findViewById(R.id.rv);
 
+        final ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                final int position = viewHolder.getAdapterPosition(); //get position which is swipe
+                if (direction == ItemTouchHelper.LEFT) {    //if swipe left
+                    adapter.notifyItemRemoved(position);    //item removed from recylcerview
+                    Log.d("<NITYAM>", "onSwiped: "+Integer.toString(position));
+                    JobPost jp = JobController.removeAtIndex(position);
+
+                    //remove from firebase
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user);
+                    ref.child(jp.getId()).removeValue();
+                }
+
+
+                // Row is swiped from recycler view
+                // remove it from adapter
+            }
+
+            @Override
+            public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                // view the background view
+            }
+        };
+
+// attaching the touch helper to recycler view
+        new ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rv);
+
+
         LinearLayoutManager llm = new LinearLayoutManager(context);
         rv.setLayoutManager(llm);
+
+
+
 //
 //        DataUser du = new DataUser();
 //        du.activateData();
