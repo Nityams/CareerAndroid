@@ -75,6 +75,19 @@ public class JobPage extends AppCompatActivity {
 
         populateSpinner();
 
+        JobPost jp = (JobPost) getIntent().getSerializableExtra("Update_Job");
+        if(jp != null) {
+            id = jp.getId();
+            company.setText(jp.getCompany());
+            position.setText(jp.getPosition());
+            city.setText(jp.getCity());
+            refName.setText(jp.getRecName());
+            refEmail.setText(jp.getRefEmail());
+            recEmail.setText(jp.getRecEmail());
+            recName.setText(jp.getRecName());
+            presetSpinner(jp.getStatus());
+        }
+
         company.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -86,6 +99,16 @@ public class JobPage extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void presetSpinner(String spin) {
+
+        if(spin.equals("applied")) statusSpinner.setSelection(0);
+        else if(spin.equals("interview"))statusSpinner.setSelection(1);
+        else if(spin.equals("offered"))statusSpinner.setSelection(2);
+        else if(spin.equals("rejected"))statusSpinner.setSelection(3);
+        else statusSpinner.setSelection(4);
+
     }
 
     private void populateSpinner() {
@@ -103,24 +126,24 @@ public class JobPage extends AppCompatActivity {
                     case 0:
                         // Whatever you want to happen when the first item gets selected
                         //date applied
-                        Toast.makeText(JobPage.this, "Applied", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(JobPage.this, "Applied", Toast.LENGTH_SHORT).show();
                         spinnerString = "applied";
                         break;
                     case 1:
                         // Status
-                        Toast.makeText(JobPage.this, "Interview", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(JobPage.this, "Interview", Toast.LENGTH_SHORT).show();
                         spinnerString = "interview";
                         break;
                     case 2:
-                        Toast.makeText(JobPage.this, "Offered", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(JobPage.this, "Offered", Toast.LENGTH_SHORT).show();
                         spinnerString = "offered";
                         break;
                     case 3:
-                        Toast.makeText(JobPage.this, "Rejected", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(JobPage.this, "Rejected", Toast.LENGTH_SHORT).show();
                         spinnerString = "rejected";
                         break;
                     default:
-                        Toast.makeText(JobPage.this, "Will apply", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(JobPage.this, "Will apply", Toast.LENGTH_SHORT).show();
                         spinnerString= "will apply";
                         break;
                 }
@@ -142,7 +165,7 @@ public class JobPage extends AppCompatActivity {
 //                || !date.toString().isEmpty()
                 )
         {
-            if(!update){
+            if(id == null){
                 id = Long.toString(Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis());
             }
             jobPost = new JobPost(  id,

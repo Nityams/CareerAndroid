@@ -65,7 +65,7 @@ public class DBLoadinScreen extends Activity {
             Log.d("<Nityam>","user token error");
             status.setText("Token error");
         }else{
-            status.setText("Connecting to firebase.. for "+ user);
+            status.setText("Connecting to firebase... ");
             rootRef = FirebaseDatabase.getInstance().getReference();
             rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -77,10 +77,7 @@ public class DBLoadinScreen extends Activity {
                         // add to the phone
                         populateFromDatabase();
 
-                        status.setText("starting home page");
-                        Intent intent = new Intent(DBLoadinScreen.this, Home.class);
-                        intent.putExtra("first_start", false);
-                        startActivity(intent);
+
                     }
                     else{
                         Log.d("<Nityam_Fbase>","User NOT Found");
@@ -121,6 +118,10 @@ public class DBLoadinScreen extends Activity {
 
                    Log.d("<from-db>", Integer.toString(JobController.getJobSize()));
                 }
+                status.setText("starting home page");
+                Intent intent = new Intent(DBLoadinScreen.this, Home.class);
+                intent.putExtra("first_start", false);
+                startActivity(intent);
             }
 
             @Override

@@ -61,7 +61,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataViewHolder>{
     @Override
     public void onBindViewHolder(DataViewHolder DataViewHolder, int i) {
         DataViewHolder.company.setText(datas.get(i).getCompany());
-        DataViewHolder.position.setText(datas.get(i).getCompany());
+        DataViewHolder.position.setText(datas.get(i).getPosition());
         DataViewHolder.date.setText(datas.get(i).getDate());
         DataViewHolder.location.setText(datas.get(i).getCity());
         String st = datas.get(i).getStatus();
@@ -72,9 +72,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataViewHolder>{
         switch(st){
             case "interview" : DataViewHolder.status.setBackgroundColor(Color.YELLOW);
                                 break;
-            case "accepted" :   DataViewHolder.status.setBackgroundColor(Color.GREEN);
+            case "offered" :   DataViewHolder.status.setBackgroundColor(Color.GREEN);
                                 break;
             case "rejected" :   DataViewHolder.status.setBackgroundColor(Color.RED);
+                                break;
+            case "will apply": DataViewHolder.status.setBackgroundColor(Color.CYAN);
                                 break;
             default:
                                 DataViewHolder.status.setBackgroundColor(Color.BLUE);

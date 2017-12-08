@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.login.LoginManager;
+import com.nityam.career.Controller.JobController;
 import com.nityam.career.Model.PrefUtil;
 import com.nityam.career.R;
 
@@ -17,6 +18,7 @@ public class Profile extends AppCompatActivity {
 
     TextView username;
     TextView email;
+    TextView number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class Profile extends AppCompatActivity {
 
         username = (TextView) findViewById(R.id.userName);
         email = (TextView) findViewById(R.id.userEmail);
+        number = (TextView) findViewById(R.id.userNumberCompaniesApplied);
 
         Toast.makeText(this, Boolean.toString(PrefUtil.isLoggedIn()), Toast.LENGTH_SHORT).show();
 
@@ -32,6 +35,7 @@ public class Profile extends AppCompatActivity {
 
         username.setText(userInfo[0]+" "+userInfo[1]);
         email.setText(userInfo[2]);
+        number.setText(Integer.toString(JobController.getJobSize()));
     }
 
     public void logout(View view) {

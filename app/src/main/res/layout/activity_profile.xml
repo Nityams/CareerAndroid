@@ -45,7 +45,7 @@
                  android:layout_height="wrap_content"
                  android:textSize="@dimen/newTextSize"
                  android:layout_margin="@dimen/textSize"
-                 android:text="Companies Applied: "/>
+                 android:text="Number of jobs: "/>
 
              <TextView
                  android:layout_width="wrap_content"

@@ -48,4 +48,8 @@ public class JobController {
         return jobs.remove(i);
     }
 
+    public static JobPost getAtIndex(int i){
+        return jobs.get(i);
+    }
+
 }

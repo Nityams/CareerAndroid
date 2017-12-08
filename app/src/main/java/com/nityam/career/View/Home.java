@@ -16,10 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -126,9 +123,12 @@ public class Home extends AppCompatActivity {
 
         firstStart = getIntent().getBooleanExtra("first_start",false);
 
-        Toast.makeText(this, Boolean.toString(firstStart), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "first_start"+Boolean.toString(firstStart), Toast.LENGTH_SHORT).show();
 
 //        if(!firstStart) {
+
+/*      Sorting spinner
+
 
             spinner = (Spinner) findViewById(R.id.spinner);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -144,11 +144,11 @@ public class Home extends AppCompatActivity {
                         case 0:
                             // Whatever you want to happen when the first item gets selected
                             //date applied
-                            Toast.makeText(Home.this, "Sort by dates", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(Home.this, "Sort by dates", Toast.LENGTH_SHORT).show();
                             break;
                         case 1:
                             // Status
-                            Toast.makeText(Home.this, "Sort by status", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(Home.this, "Sort by status", Toast.LENGTH_SHORT).show();
 
                             break;
                     }
@@ -160,7 +160,7 @@ public class Home extends AppCompatActivity {
                 }
             });
 
-
+*/
             setCards();
 
 //        }else{
@@ -172,6 +172,7 @@ public class Home extends AppCompatActivity {
 
     }
 
+    /*
     private void setWelcomeCards() {
         // make it fragment
         TextView welcome1 = (TextView) findViewById(R.id.welcome1);
@@ -185,7 +186,7 @@ public class Home extends AppCompatActivity {
         welcome4.setText("Good Luck");
 
     }
-
+*/
     private void goToMap(Home home) {
         Intent intent = new Intent(this,MapsActivity.class);
         startActivity(intent);
@@ -217,10 +218,15 @@ public class Home extends AppCompatActivity {
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference(user);
                     ref.child(jp.getId()).removeValue();
                 }
+                if(direction == ItemTouchHelper.RIGHT){
+                    JobPost jp = JobController.getAtIndex(position);
+                    Toast.makeText(Home.this, "Updaing "+jp.getCompany(), Toast.LENGTH_SHORT).show();
 
+                    Intent intent = new Intent(Home.this, JobPage.class);
+                    intent.putExtra("Update_Job", jp);
+                    startActivity(intent);
 
-                // Row is swiped from recycler view
-                // remove it from adapter
+                }
             }
 
             @Override
@@ -235,9 +241,6 @@ public class Home extends AppCompatActivity {
 
         LinearLayoutManager llm = new LinearLayoutManager(context);
         rv.setLayoutManager(llm);
-
-
-
 //
 //        DataUser du = new DataUser();
 //        du.activateData();
@@ -253,5 +256,8 @@ public class Home extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        //
+    }
 }
