@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.location.Address;
 import android.location.Criteria;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -23,6 +25,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nityam.career.Model.FireSave;
 import com.nityam.career.R;
+
+import java.io.IOException;
+import java.util.List;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -51,8 +56,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-        Toast.makeText(this, Integer.toString(FireSave.getNumberCities()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, Integer.toString(FireSave.getNumberCityMaps()), Toast.LENGTH_SHORT).show();
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        //
     }
 
     private void goToMain(MapsActivity mapsActivity) {
@@ -122,7 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         } else {
                 googleMap.addMarker(new MarkerOptions().position(
-                        new LatLng(l.getLatitude(), l.getLongitude())).title("Current location"));
+                        new LatLng(l.getLatitude(), l.getLongitude())).title("Your location"));
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(l.getLatitude(), l.getLongitude()), 16));
 
@@ -130,6 +141,62 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                googleMap.moveCamera(CameraUpdateFactory.newLatLng(
 //                        new LatLng(l.getLatitude(), l.getLongitude())));
         }
+
+
+        try {
+            int totalLocations = FireSave.getNumberCityMaps();
+            if(totalLocations < 1) return;
+
+            for(int i =0; i< totalLocations; i++){
+                String[] info = FireSave.getMapAt(i);
+
+                double[] loca = geoLocate(info[1]);
+                if(loca!= null)
+                    googleMap.addMarker(new MarkerOptions().position(
+                            new LatLng(loca[0], loca[1])).title(info[0]));
+                else
+                    Toast.makeText(this, "Address not found", Toast.LENGTH_SHORT).show();
+            }
+
+        } catch (IOException e) {
+            Log.d("ERROR", "ERROR");
+            e.printStackTrace();
+        }
+    }
+
+    private double[] geoLocate(String city) throws IOException {
+
+        Geocoder gc = new Geocoder(this);
+        List<Address> list = gc.getFromLocationName(city, 5);
+        if(list.size()<1) return null;
+
+        Address add = list.get(0);
+        String locality = add.getLocality();
+
+//        Toast.makeText(this, locality, Toast.LENGTH_SHORT).show();
+
+        double lat = add.getLatitude();
+        double lng = add.getLongitude();
+
+        double[] loca = {lat, lng};
+
+        return loca;
+
+    }
+
+    private void addMarker(double lat, double lng) {
+
+        LatLng latLng = new LatLng(lat, lng);
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.title(latLng.latitude + " : " + latLng.longitude);
+
+//        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+//
+//        // Placing a marker on the touched position
+//        googleMap.addMarker(markerOptions);
+
     }
 
 }

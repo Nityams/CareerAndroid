@@ -44,6 +44,9 @@ public class DBLoadinScreen extends Activity {
         user = PrefUtil.getUserToken();
 
         status.setText("checking job posting");
+
+        FireSave.clear();
+
         // posting to firebase database
         JobPost jp = (JobPost) getIntent().getSerializableExtra("job");
         if(jp != null){
@@ -121,7 +124,8 @@ public class DBLoadinScreen extends Activity {
 
                    JobController.addJobs(new JobPost(value.getId(),value.getCompany(),value.getPosition(), value.getCity(),value.getDate(), value.getRefName(), value.getRefEmail(), value.getRecName(), value.getRecEmail(), value.getStatus()));
 
-                    FireSave.setCities(value.getCity());
+//                    FireSave.setCities(value.getCity());
+                    FireSave.setCityMap(value.getCompany(), value.getCity());
 
                    Log.d("<from-db>", Integer.toString(JobController.getJobSize()));
                 }
