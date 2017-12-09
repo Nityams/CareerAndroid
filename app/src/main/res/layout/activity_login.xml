@@ -25,14 +25,14 @@
         android:onClick="fbOnClick"
         app:layout_constraintTop_toBottomOf="@+id/logo"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DEBUG"
-        android:id="@+id/signup"
-        android:onClick="debugOnClick"
-        app:layout_constraintBottom_toTopOf="@id/login_button"
-        />
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="DEBUG"-->
+        <!--android:id="@+id/signup"-->
+        <!--android:onClick="debugOnClick"-->
+        <!--app:layout_constraintBottom_toTopOf="@id/login_button"-->
+        <!--/>-->
 
 
 </android.support.constraint.ConstraintLayout>

@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -49,7 +48,7 @@ public class Profile extends AppCompatActivity {
 
 
 
-        Toast.makeText(this, Boolean.toString(PrefUtil.isLoggedIn()), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, Boolean.toString(PrefUtil.isLoggedIn()), Toast.LENGTH_SHORT).show();
 
         String[] userInfo = PrefUtil.getFBUserInfoAll();
 
@@ -161,17 +160,19 @@ public class Profile extends AppCompatActivity {
                     Log.i("<NITYAMImg>", "Image Path : " + path);
                     // Set the image in ImageView
                     img.setImageURI(selectedImageUri);
+                    rotateImage();
                 }
+            } else {
+                String path = "sdcard/camera_app/cam_image.jpg";
+                img.setImageDrawable(Drawable.createFromPath(path));
+                rotateImage();
             }
-        }
-        else {
-            String path = "sdcard/camera_app/cam_image.jpg";
-            img.setImageDrawable(Drawable.createFromPath(path));
         }
 //        super.onActivityResult(requestCode, resultCode, data);
 
-        rotateImage();
+
     }
+
 
     private void rotateImage(){
 

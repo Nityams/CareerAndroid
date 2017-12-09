@@ -65,6 +65,8 @@
                         <!--android:layout_height="wrap_content"-->
                         <!--android:hint="Date"-->
                         <!--android:id="@+id/newDate"/>-->
+
+
                 <!--</LinearLayout>-->
             <!--</android.support.v7.widget.CardView>-->
 

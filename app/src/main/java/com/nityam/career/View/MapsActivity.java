@@ -15,7 +15,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -56,7 +55,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-        Toast.makeText(this, Integer.toString(FireSave.getNumberCityMaps()), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, Integer.toString(FireSave.getNumberCityMaps()), Toast.LENGTH_SHORT).show();
 
     }
 
@@ -155,7 +154,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     googleMap.addMarker(new MarkerOptions().position(
                             new LatLng(loca[0], loca[1])).title(info[0]));
                 else
-                    Toast.makeText(this, "Address not found", Toast.LENGTH_SHORT).show();
+                    Log.d("<LOCAITONnityam>","not found");
             }
 
         } catch (IOException e) {

@@ -55,7 +55,7 @@ public class Home extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.about:
-                Toast.makeText(this, "ABOUT", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "ABOUT not available at the moment", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.logout:
                 LoginManager.getInstance().logOut();
@@ -123,7 +123,7 @@ public class Home extends AppCompatActivity {
 
         firstStart = getIntent().getBooleanExtra("first_start",false);
 
-        Toast.makeText(this, "first_start"+Boolean.toString(firstStart), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "first_start"+Boolean.toString(firstStart), Toast.LENGTH_SHORT).show();
 
 //        if(!firstStart) {
 
@@ -220,7 +220,7 @@ public class Home extends AppCompatActivity {
                 }
                 if(direction == ItemTouchHelper.RIGHT){
                     JobPost jp = JobController.getAtIndex(position);
-                    Toast.makeText(Home.this, "Updaing "+jp.getCompany(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Home.this, "Updating "+jp.getCompany(), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(Home.this, JobPage.class);
                     intent.putExtra("Update_Job", jp);

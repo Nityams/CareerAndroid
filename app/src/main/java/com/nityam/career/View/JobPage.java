@@ -1,8 +1,8 @@
 package com.nityam.career.View;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.nityam.career.Controller.Volley;
 import com.nityam.career.Model.JobPost;
@@ -39,7 +38,7 @@ public class JobPage extends AppCompatActivity {
     Boolean update = false;
 
 
-    ProgressDialog progressDialog;
+//    ProgressDialog progressDialog;
     Volley volley ;
     ArrayList<String> data;
 
@@ -81,10 +80,13 @@ public class JobPage extends AppCompatActivity {
             company.setText(jp.getCompany());
             position.setText(jp.getPosition());
             city.setText(jp.getCity());
-            refName.setText(jp.getRecName());
+            refName.setText(jp.getRefName());
             refEmail.setText(jp.getRefEmail());
             recEmail.setText(jp.getRecEmail());
             recName.setText(jp.getRecName());
+
+//            dateTxt.setText(jp.getDate());
+
             presetSpinner(jp.getStatus());
         }
 
@@ -100,6 +102,7 @@ public class JobPage extends AppCompatActivity {
             }
         });
     }
+
 
     private void presetSpinner(String spin) {
 
@@ -159,8 +162,8 @@ public class JobPage extends AppCompatActivity {
 
     public void submit(View view) {
 
-        if(!company.getText().toString().isEmpty() ||
-                !position.getText().toString().isEmpty() ||
+        if(!company.getText().toString().isEmpty() &&
+                !position.getText().toString().isEmpty() &&
                 !city.getText().toString().isEmpty()
 //                || !date.toString().isEmpty()
                 )
@@ -184,7 +187,9 @@ public class JobPage extends AppCompatActivity {
             startActivity(intent);
         }
         else{
-            Toast.makeText(this, "Incomplete form", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Incomplete form", Toast.LENGTH_SHORT).show();
+            Snackbar.make(view, "Incomplete form", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
         }
 
 
@@ -215,7 +220,7 @@ public class JobPage extends AppCompatActivity {
             intent.putStringArrayListExtra("company_info", data);
             startActivity(intent);
         }else{
-            Toast.makeText(this, "Company Not Found", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Company Not Found", Toast.LENGTH_SHORT).show();
         }
 
     }
