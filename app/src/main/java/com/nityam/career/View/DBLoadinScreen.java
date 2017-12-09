@@ -1,8 +1,10 @@
 package com.nityam.career.View;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -25,11 +27,16 @@ public class DBLoadinScreen extends Activity {
     JobController jobController;
     TextView status;
 
+    private final int REQUEST_CODE = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dbloadin_screen);
+
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION}, REQUEST_CODE);
 
         status = (TextView) findViewById(R.id.loadingStatus);
 
