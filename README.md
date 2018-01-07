@@ -4,7 +4,7 @@
 This is the app that keeps track of jobs applied by the user.
 
 ## About the project:
-Final project for SJSU's CS-175 (Mobile Dev).
+One of the final projects for SJSU.
 
 ## Features:
 - SSO with Facebook
